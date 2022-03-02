@@ -41,7 +41,7 @@ const displaySearchResult = (phones) => {
     const div = document.createElement("div");
     div.classList.add("col");
 
-    div.innerHTML = `<div class="card h-100">
+    div.innerHTML = `<div class="card h-100" style="border-radius: 20px;">
     <img class="card-img-top w-50 mx-auto my-2" src="${phone.image}" alt="Card image" style="width:100%">
     <div class="card-body">
       <h4 class="card-title text-center">${phone.phone_name}</h4>
@@ -74,19 +74,52 @@ const showDetail = (info) => {
   const div = document.createElement("div");
   div.classList.add("col");
   div.innerHTML = ` 
-    <div class="card">
+    <div class="card" style="border-radius: 20px;">
       <img class="card-img-top w-50 mx-auto my-2" src="${
         info.image
       }" alt="Card image cap" />
       <div class="card-body">
-        <h5 class="card-title text-center">${
+        <h5 class="text-center"><strong>Release Date - </strong>${
           info?.releaseDate ? info.releaseDate : "Release Date Not Found"
         }</h5>
-        
-        <h6 class="text-center">${info.mainFeatures.storage}</h6>
-        <h6 class="text-center">${info.mainFeatures.displaySize}</h6>
-        <h6 class="text-center">${info.mainFeatures.chipSet}</h6>
-        <h6 class="text-center">${info.mainFeatures.memory}</h6>
+        <h5 class="text-center"><strong>Name - </strong>${info.name}</h5>
+        <h6 class="text-center"><strong>Storage - </strong>${
+          info.mainFeatures.storage
+        }</h6>
+        <h5 class ='text-center'>Main Features</h5>
+        <h6 class="text-center"><strong>Display - </strong>${
+          info.mainFeatures.displaySize
+        }</h6>
+        <h6 class="text-center"><strong>Chipset - </strong>${
+          info.mainFeatures.chipSet
+        }</h6>
+        <h6 class="text-center"><strong>Memory - </strong>${
+          info.mainFeatures.memory
+        }</h6>
+        <h6 class="text-center"><strong>Sensors - </strong>${
+          info.mainFeatures.sensors
+        }</h6>
+        <h5 class="text-center"><strong>Others:</strong></h5>
+        <p class="text-center"><strong>WLAN:</strong>${
+          info?.others.WLAN ? info.others.WLAN : "NO"
+        }</p>
+        <p class="text-center"><strong>Bluetooth:</strong>${
+          info?.others.Bluetooth ? info.others.Bluetooth : "NO"
+        }</p>
+        <p class="text-center"><strong>GPS:</strong>${
+          info?.others.GPS ? info.others.GPS : "NO"
+        }</p>
+        <p class="text-center"><strong>NFC:</strong>${
+          info?.others.NFC ? info.others.NFC : "NO"
+        }</p>
+        <p class="text-center"><strong>Radio:</strong>${
+          info?.others.Radio ? info.others.Radio : "NO"
+        }</p>
+        <p class="text-center"><strong>USB:</strong>${
+          info?.others.USB ? info.others.USB : "NO"
+        }</p>
+      
+
        
       </div>
     </div>

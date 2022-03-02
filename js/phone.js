@@ -1,10 +1,10 @@
 const searchResult = document.getElementById("search-result");
 const phoneDetails = document.getElementById("phone-details");
-
+//Insert something
 const searchButton = () => {
   const searchField = document.getElementById("search-input");
   const searchText = searchField.value;
-  console.log(searchText);
+  // console.log(searchText);
   const error = document.getElementById("error");
   if (searchText == "") {
     error.innerText = "No search result,try again";
@@ -30,8 +30,9 @@ const searchButton = () => {
     phoneDetails.textContent = "";
   }
 };
+// displaying phone result
 const displaySearchResult = (phones) => {
-  console.log(phones);
+  // console.log(phones);
 
   const first20Phones = phones.slice(0, 20);
   searchResult.textContent = "";
@@ -66,6 +67,8 @@ const loadPhoneDetail = (detail) => {
     .then((res) => res.json())
     .then((data) => showDetail(data.data));
 };
+
+// phone details
 
 const showDetail = (info) => {
   console.log(info);

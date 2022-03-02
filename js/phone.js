@@ -1,3 +1,6 @@
+const searchResult = document.getElementById("search-result");
+const phoneDetails = document.getElementById("phone-details");
+
 const searchButton = () => {
   const searchField = document.getElementById("search-input");
   const searchText = searchField.value;
@@ -6,7 +9,8 @@ const searchButton = () => {
   if (searchText == "") {
     error.innerText = "No search result,try again";
     searchField.value = "";
-    document.getElementById("search-result").innerHTML = "";
+    searchResult.textContent = "";
+    phoneDetails.textContent = "";
   } else {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
@@ -14,7 +18,7 @@ const searchButton = () => {
       .then((data) => {
         if (data.data.length == 0) {
           error.innerText = "No search result,try again";
-          document.getElementById("search-result").innerHTML = "";
+          searchResult.textContent = "";
         } else {
           displaySearchResult(data.data);
           error.innerText = "";
@@ -23,14 +27,14 @@ const searchButton = () => {
 
     searchField.value = "";
     error.innerText = "";
+    phoneDetails.textContent = "";
   }
 };
 const displaySearchResult = (phones) => {
   console.log(phones);
 
-  const searchResult = document.getElementById("search-result");
   const first20Phones = phones.slice(0, 20);
-  searchResult.innerHTML = "";
+  searchResult.textContent = "";
 
   first20Phones.forEach((phone) => {
     console.log(phone);
@@ -65,24 +69,25 @@ const loadPhoneDetail = (detail) => {
 
 const showDetail = (info) => {
   console.log(info);
-  const phoneDetails = document.getElementById("phone-details");
 
   phoneDetails.innerHTML = "";
   const div = document.createElement("div");
   div.classList.add("col");
   div.innerHTML = ` 
     <div class="card">
-      <img class="card-img-top w-50 mx-auto my-2" src="${info.image}" alt="Card image cap" />
+      <img class="card-img-top w-50 mx-auto my-2" src="${
+        info.image
+      }" alt="Card image cap" />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a longer card with supporting text below as a natural
-          lead-in to additional content. This content is a little bit
-          longer.
-        </p>
-        <p class="card-text">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </p>
+        <h5 class="card-title text-center">${
+          info?.releaseDate ? info.releaseDate : "Release Date Not Found"
+        }</h5>
+        
+        <h6 class="text-center">${info.mainFeatures.storage}</h6>
+        <h6 class="text-center">${info.mainFeatures.displaySize}</h6>
+        <h6 class="text-center">${info.mainFeatures.chipSet}</h6>
+        <h6 class="text-center">${info.mainFeatures.memory}</h6>
+       
       </div>
     </div>
   `;
